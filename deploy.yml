@@ -1,4 +1,4 @@
-name: 🚀 Deploy React App to Hostinger via SFTP
+name: 🚀 Deploy ztrategize React App to Hostinger via SFTP
 
 on:
   push:
