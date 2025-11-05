@@ -20,5 +20,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 22
-          source: "./*"                     # upload everything in repo
-          target: "/var/www/ztrategize-admin"  # Hostinger target path
+          source: "./*"                     # Upload all files from repo
+          target: "/var/www/ztrategize-admin"  # Your Hostinger path
