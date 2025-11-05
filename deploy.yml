@@ -1,9 +1,9 @@
-name: 🚀 Deploy React App to Hostinger via SFTP
+name: 🚀 Upload Files to Hostinger via SFTP
 
 on:
   push:
     branches:
-      - main
+      - main  # or your deploy branch
 
 jobs:
   sftp-deploy:
@@ -13,29 +13,12 @@ jobs:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
 
-      - name: 🛠️ Build React Project
-        run: |
-          cd frontend  # 👈 change this to the actual path containing package.json
-          npm install
-          npm run build
-        working-directory: ./frontend  # optional alternative to cd
-
-      - name: 🔍 Verify build directory
-        run: |
-          if [ ! -d "frontend/build" ] || [ -z "$(ls -A frontend/build)" ]; then
-            echo "❌ 'build/' directory missing or empty!"
-            exit 1
-          else
-            echo "✅ 'build/' directory found:"
-            ls -al frontend/build
-          fi
-
-      - name: 📤 Upload build to Hostinger via SFTP
+      - name: 📤 Upload Files to Hostinger
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          password: ${{ secrets.FTP_PASSWORD }}  # or use `key:` if SSH key-based
           port: 22
-          source: "frontend/build/*"
-          target: "/var/www/ztrategize-admin"
+          source: "."               # 👈 uploads all repo files
+          target: ${{ secrets.REMOTE_DIR }}  # 👈 your Hostinger path
