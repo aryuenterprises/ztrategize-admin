@@ -1,4 +1,4 @@
-name: 🚀 Upload Files to Hostinger via SFTP
+name: 🚀 Zstrategies Upload Files to Hostinger via SFTP
 
 on:
   push:
