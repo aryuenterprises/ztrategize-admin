@@ -1,9 +1,9 @@
-name: 🚀 Deploy ztrategize React App to Hostinger via SFTP
+name: 🚀 Deploy React App to Hostinger via SFTP
 
 on:
   push:
     branches:
-      - main  # change if your deployment branch differs
+      - main
 
 jobs:
   sftp-deploy:
@@ -15,17 +15,19 @@ jobs:
 
       - name: 🛠️ Build React Project
         run: |
+          cd frontend  # 👈 change this to the actual path containing package.json
           npm install
           npm run build
+        working-directory: ./frontend  # optional alternative to cd
 
       - name: 🔍 Verify build directory
         run: |
-          if [ ! -d "build" ] || [ -z "$(ls -A build)" ]; then
+          if [ ! -d "frontend/build" ] || [ -z "$(ls -A frontend/build)" ]; then
             echo "❌ 'build/' directory missing or empty!"
             exit 1
           else
             echo "✅ 'build/' directory found:"
-            ls -al build
+            ls -al frontend/build
           fi
 
       - name: 📤 Upload build to Hostinger via SFTP
@@ -33,7 +35,7 @@ jobs:
         with:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}  # or use `key:` if SSH key-based
+          password: ${{ secrets.FTP_PASSWORD }}
           port: 22
-          source: "build/*"
-          target: ${{ secrets.REMOTE_DIR }}
+          source: "frontend/build/*"
+          target: "/var/www/ztrategize-admin"
