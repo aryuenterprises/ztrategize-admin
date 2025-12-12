@@ -96,7 +96,7 @@ import Letters_download from "./components/releiving components/Letters_download
 import Social_account_main from "./components/social media/Social_account_main";
 import Social_credentials_main from "./components/social media/Social_credentials_main";
 import Finance_account_main from "./pages/Finance_account_main";
-import Messages from './pages/Messages'
+import Messages from "./pages/Messages";
 import Bidding_all_main from "./components/bidding assests components/Bidding_all_main";
 import Tasklist_main_client from "./pages/Tasklist_main_client";
 import Admin_privileges_main from "./pages/Admin_privileges_main";
@@ -133,6 +133,7 @@ function App() {
 
   const hasPermission = (title) => {
     const user = JSON.parse(localStorage.getItem("hrmsuser"));
+    console.log(user);
     const module = JSON.parse(localStorage.getItem("module"));
     const hrpermissions = module || [];
 
@@ -147,15 +148,17 @@ function App() {
 
   const fetchPermissionModule = async () => {
     const user = JSON.parse(localStorage.getItem("hrmsuser"));
-    const response = await axios.get(
-      `${API_URL}/api/hr-permission/get-employee-permission/${user.employeeId}`
-    );
-    console.log(response);
+    if (!user.superUser) {
+      const response = await axios.get(
+        `${API_URL}/api/hr-permission/get-employee-permission/${user.employeeId}`
+      );
+      console.log(response);
 
-    localStorage.setItem(
-      "module",
-      JSON.stringify(response?.data?.data[0]?.module || [])
-    );
+      localStorage.setItem(
+        "module",
+        JSON.stringify(response?.data?.data[0]?.module || [])
+      );
+    }
   };
 
   useEffect(() => {
@@ -196,13 +199,13 @@ function App() {
             }
           />
           <Route
-                path="/tasklist-details_client/:taskId"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Tasklist_main_client />
-                  </ProtectedRoute>
-                }
-              />
+            path="/tasklist-details_client/:taskId"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Tasklist_main_client />
+              </ProtectedRoute>
+            }
+          />
 
           {/* <Route
             path="/permission"
@@ -336,7 +339,7 @@ function App() {
                 }
               />
 
-               <Route
+              <Route
                 path="bidding-all-details/:row"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
@@ -382,7 +385,6 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              
 
               <Route
                 path="source-Recruitment"
@@ -498,31 +500,31 @@ function App() {
             </>
           )}
           <Route
-                path="task-list-client"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <TaskListClientPage />
-                  </ProtectedRoute>
-                }
-              />
+            path="task-list-client"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <TaskListClientPage />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-                path="task-details-client"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Task_homeClient />
-                  </ProtectedRoute>
-                }
-              />
+          <Route
+            path="task-details-client"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Task_homeClient />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-                path="close-details-client"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Close_homeClient />
-                  </ProtectedRoute>
-                }
-              />
+          <Route
+            path="close-details-client"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Close_homeClient />
+              </ProtectedRoute>
+            }
+          />
           {hasPermission("Projects") && (
             <>
               <Route
@@ -643,7 +645,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-               <Route
+              <Route
                 path="finance-account"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
@@ -706,12 +708,12 @@ function App() {
           )}
 
           <Route
-                path="payslip-conent"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <PayslipContent/>
-                  </ProtectedRoute>
-                }
+            path="payslip-conent"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <PayslipContent />
+              </ProtectedRoute>
+            }
           />
 
           {hasPermission("Holidays") && (
@@ -726,25 +728,24 @@ function App() {
           )}
 
           {/* social media */}
-            {hasPermission("socialmedia") && (
+          {hasPermission("socialmedia") && (
             <>
               <Route
                 path="social-account"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Social_account_main/>
+                    <Social_account_main />
                   </ProtectedRoute>
                 }
               />
-               <Route
+              <Route
                 path="social-credentials"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Social_credentials_main/>
+                    <Social_credentials_main />
                   </ProtectedRoute>
                 }
               />
-             
             </>
           )}
 
