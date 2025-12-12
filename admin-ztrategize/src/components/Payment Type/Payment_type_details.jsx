@@ -298,8 +298,8 @@ const Payment_type_details = () => {
   };
 
   useEffect(() => {
-    if (selectedProject?.gst_amount) {
-      setBudget(selectedProject.gst_amount);
+    if (selectedProject?.budget) {
+      setBudget(selectedProject.budget);
     } else {
       setBudget("0");
     }
@@ -413,7 +413,7 @@ const Payment_type_details = () => {
     setEditid(row._id);
     setSelectedClientedit(row.client_name);
     setSelectedProjectedit(row.project_name?.name);
-    setBudgetedit(row.project_name?.gst_amount);
+    setBudgetedit(row.project_name?.budget || 0);
     // setGstedit(row.gst);
     // setFullpaymentedit(Number(row.gst_amount) || 0);
     setStatusedit(row.status);
@@ -651,7 +651,7 @@ const Payment_type_details = () => {
       title: "Budget",
       data: null,
       render: (row) => {
-        const amount = row.project_name?.gst_amount;
+        const amount = row.project_name?.budget;
         return amount != null
           ? `₹ ${Number(amount).toLocaleString("en-IN")}`
           : "-";

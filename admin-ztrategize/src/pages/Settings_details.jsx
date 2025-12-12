@@ -291,7 +291,7 @@ const Settings_details = () => {
                       htmlFor="eeesi"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      EMPLOYEE EEESI
+                      EMPLOYEE ESI
                     </label>
                     <input
                       id="eeesi"
@@ -308,7 +308,7 @@ const Settings_details = () => {
                       htmlFor="eresi"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      EMPLOYEE ERESI
+                      EMPLOYEE ESI
                     </label>
                     <input
                       id="eresi"

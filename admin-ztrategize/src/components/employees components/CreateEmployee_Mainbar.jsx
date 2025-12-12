@@ -834,6 +834,7 @@ const CreateEmployee_Mainbar = () => {
 
   //experience
   const [workExperiences, setWorkExperiences] = useState([]);
+  console.log("workExperiences", workExperiences);
 
   const [selectedPosition, setSelectedPosition] = useState([]);
   const [experienceForm, setExperienceForm] = useState({
@@ -953,7 +954,7 @@ const CreateEmployee_Mainbar = () => {
 
       dateOfBirth: employeeDob,
       maritalStatus: maritalStatus,
-      spouseName:maritalStatus=="Married"?spouse_name:"",
+      spouseName: maritalStatus == "Married" ? spouse_name : "",
       //pf
       uanNo: uan_number,
       pfJoinDate: pfJoinDate,
@@ -1026,8 +1027,7 @@ const CreateEmployee_Mainbar = () => {
     const isaadharNumberValid = aadharRegex.test(aadhar_no);
     const isdobValid = employeeDob !== null ? true : false;
 
-    const isuanNumber =
-       uan_number.trim().length <= 12 ? true : false;
+    const isuanNumber = uan_number.trim().length <= 12 ? true : false;
 
     // const ispfjoindateValid = pfJoinDate !== null ? true : false;
     // const ispfExpdateValid = pfExpiryDate !== null ? true : false;
@@ -1521,7 +1521,6 @@ const CreateEmployee_Mainbar = () => {
         <Loader />
       ) : (
         <>
-
           <Mobile_Sidebar />
 
           <div className="flex gap-2 mt-5 text-sm items-center">
@@ -1538,7 +1537,9 @@ const CreateEmployee_Mainbar = () => {
 
           <div>
             <div className="flex flex-col sm:flex-row justify-between mt-5">
-              <p className="text-xl md:text-3xl font-semibold ">Create Employee</p>
+              <p className="text-xl md:text-3xl font-semibold ">
+                Create Employee
+              </p>
 
               {/* Heading */}
               <div className="flex justify-end gap-5 mt-8">
@@ -1620,10 +1621,10 @@ const CreateEmployee_Mainbar = () => {
                           htmlFor="FULL NAME"
                           id="employee_name"
                           name="employee_name"
-                        // value={employee_name}
-                        // onChange={(e) => {
-                        //   setEmployeeName(e.target.value);
-                        // }}
+                          // value={employee_name}
+                          // onChange={(e) => {
+                          //   setEmployeeName(e.target.value);
+                          // }}
                         >
                           FULL NAME <span className="text-red-500">*</span>
                         </label>
@@ -1638,8 +1639,11 @@ const CreateEmployee_Mainbar = () => {
                         onChange={(e) => {
                           setEmployeeName(e.target.value);
                         }}
-                        className={`border-2 rounded-xl px-4 h-10  w-full  lg:w-72 ${!touched.fullName ? "border-red-400" : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl px-4 h-10  w-full  lg:w-72 ${
+                          !touched.fullName
+                            ? "border-red-400"
+                            : "border-gray-300"
+                        }`}
                         onKeyUp={handleKeyUp}
                       />
                     </div>
@@ -1673,8 +1677,11 @@ const CreateEmployee_Mainbar = () => {
                             setPhoneNumber(e.target.value);
                           }}
                           placeholder="00000-00000"
-                          className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 " w-full lg:w-72 ${!touched.phoneNum ? "border-red-400" : "border-gray-300"
-                            }`}
+                          className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 " w-full lg:w-72 ${
+                            !touched.phoneNum
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                         />
 
@@ -1723,8 +1730,11 @@ const CreateEmployee_Mainbar = () => {
                           onChange={(e) => {
                             setEmailAddress(e.target.value);
                           }}
-                          className={`border-2 rounded-xl px-4 h-10 " w-full lg:w-72 ${!touched.email ? "border-red-400" : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl px-4 h-10 " w-full lg:w-72 ${
+                            !touched.email
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                         />
 
@@ -1746,7 +1756,8 @@ const CreateEmployee_Mainbar = () => {
                           className="font-medium text-sm"
                           htmlFor="CREATE PASSWORD"
                         >
-                          CREATE PASSWORD <span className="text-red-500">*</span>
+                          CREATE PASSWORD{" "}
+                          <span className="text-red-500">*</span>
                         </label>
                         {/* <p className="text-sm">Add employee password</p> */}
                       </div>
@@ -1760,10 +1771,11 @@ const CreateEmployee_Mainbar = () => {
                           type={showPassword ? "text" : "password"}
                           placeholder="#@ABCaba1214"
                           className={`border-2 h-10 rounded-xl px-4 border-gray-300  w-full pr-10 
-                        ${!touched.password
-                              ? "border-red-400"
-                              : "border-gray-300"
-                            }`}
+                        ${
+                          !touched.password
+                            ? "border-red-400"
+                            : "border-gray-300"
+                        }`}
                           onKeyUp={handleKeyUp}
                         />
                         <button
@@ -1787,10 +1799,11 @@ const CreateEmployee_Mainbar = () => {
                           name=""
                           id=""
                           className={`w-full py-2 px-5 text-left border-2 border-gray-300 rounded-xl shadow-sm flex justify-between items-center cursor-pointer
-                         ${!touched.employeeType
-                              ? "border-red-400"
-                              : "border-gray-300"
-                            }`}
+                         ${
+                           !touched.employeeType
+                             ? "border-red-400"
+                             : "border-gray-300"
+                         }`}
                           value={employeeWorkType}
                           onChange={(e) => setEmployeeWorkType(e.target.value)}
                         >
@@ -1883,17 +1896,22 @@ const CreateEmployee_Mainbar = () => {
                         <button
                           onClick={() => setPositionIsOpen(!positionIsOpen)}
                           className={`w-full py-2 px-5 text-left border-2  rounded-xl shadow-sm flex justify-between items-center
-                         ${!touched.SelectedRolestype
-                              ? "border-red-400 "
-                              : "border-gray-300"
-                            }`}
+                         ${
+                           !touched.SelectedRolestype
+                             ? "border-red-400 "
+                             : "border-gray-300"
+                         }`}
                         >
                           {selectedPositionId
                             ? positionOptions.find(
-                              (r) => r._id === selectedPositionId
-                            )?.name
+                                (r) => r._id === selectedPositionId
+                              )?.name
                             : "Choose Position"}
-                          {positionIsOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                          {positionIsOpen ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </button>
 
                         {positionIsOpen && (
@@ -2086,7 +2104,8 @@ const CreateEmployee_Mainbar = () => {
                             });
                           }}
                         >
-                          DATE OF JOINING <span className="text-red-500">*</span>
+                          DATE OF JOINING{" "}
+                          <span className="text-red-500">*</span>
                         </label>
                         {/* <p className="text-sm">employee's date of join</p> */}
                       </div>
@@ -2095,10 +2114,11 @@ const CreateEmployee_Mainbar = () => {
                         <DatePicker
                           id="DATE OF JOINING"
                           placeholderText="Employee date of join"
-                          className={`border-2 rounded-xl h-10 px-4 w-full lg:w-72  block  ${!touched.dateOfJoin
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 w-full lg:w-72  block  ${
+                            !touched.dateOfJoin
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           selected={employeeDateOfJoin}
                           onChange={handleDateChange}
@@ -2131,8 +2151,11 @@ const CreateEmployee_Mainbar = () => {
                         onChange={(e) => {
                           setEmployeeId(e.target.value);
                         }}
-                        className={`border-2 rounded-xl px-4 h-10  w-full  lg:w-72 ${!touched.employeeId ? "border-red-400" : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl px-4 h-10  w-full  lg:w-72 ${
+                          !touched.employeeId
+                            ? "border-red-400"
+                            : "border-gray-300"
+                        }`}
                         onKeyUp={handleKeyUp}
                       />
                     </div>
@@ -2152,8 +2175,9 @@ const CreateEmployee_Mainbar = () => {
                       <select
                         id="GENDER"
                         name="GENDER"
-                        className={`border-2 rounded-xl px-4 h-10  w-full lg:w-72 ${!touched.gender ? "border-red-400" : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl px-4 h-10  w-full lg:w-72 ${
+                          !touched.gender ? "border-red-400" : "border-gray-300"
+                        }`}
                         onChange={(e) => {
                           setGender(e.target.value);
                           setTouched({
@@ -2166,7 +2190,9 @@ const CreateEmployee_Mainbar = () => {
                             console.log("Enter pressed on:", e.target.value);
                           }
                           if (e.key === "Tab") {
-                            console.log("Tab pressed, moving to the next element.");
+                            console.log(
+                              "Tab pressed, moving to the next element."
+                            );
                           }
                         }}
                       >
@@ -2197,15 +2223,21 @@ const CreateEmployee_Mainbar = () => {
                         onChange={(e) => {
                           setPassportNumber(e.target.value);
                         }}
-                        className={` border-2 h-10 rounded-xl px-4   w-full  lg:w-72 ${!touched.passportNo ? "border-red-400" : "border-gray-300"
-                          }`}
+                        className={` border-2 h-10 rounded-xl px-4   w-full  lg:w-72 ${
+                          !touched.passportNo
+                            ? "border-red-400"
+                            : "border-gray-300"
+                        }`}
                         onKeyUp={handleKeyUp}
                       />
                     </div>
 
                     <div className="flex flex-col xl:flex-row justify-between gap-1">
                       <div className="flex flex-col w-full sm:w-auto">
-                        <label className="font-medium text-sm" htmlFor="empEmail">
+                        <label
+                          className="font-medium text-sm"
+                          htmlFor="empEmail"
+                        >
                           EMAIL ADDRESS
                         </label>
                         {/* <p className="text-sm">Add passport No</p> */}
@@ -2237,8 +2269,11 @@ const CreateEmployee_Mainbar = () => {
                       <div className="flex flex-col gap-1">
                         <input
                           type="text"
-                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${!touched.panNo ? "border-red-400" : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${
+                            !touched.panNo
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           placeholder="Pan Number"
                           value={pan_number}
@@ -2257,7 +2292,10 @@ const CreateEmployee_Mainbar = () => {
                     {/* Aadhar No */}
                     <div className="flex flex-col xl:flex-row justify-between gap-1">
                       <div className="flex flex-col w-full sm:w-auto">
-                        <label className="font-medium text-sm" htmlFor="AADHAR NO">
+                        <label
+                          className="font-medium text-sm"
+                          htmlFor="AADHAR NO"
+                        >
                           AADHAR NO
                         </label>
                         {/* <p className="text-sm">Add Aadhar No</p> */}
@@ -2273,8 +2311,11 @@ const CreateEmployee_Mainbar = () => {
                             setAadharNumber(e.target.value);
                           }}
                           onKeyUp={handleKeyUp}
-                          className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 h-10 rounded-xl px-4 border-gray-300  w-full  lg:w-72  ${!touched.aadharNo ? "border-red-400" : "border-gray-300"
-                            }`}
+                          className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 h-10 rounded-xl px-4 border-gray-300  w-full  lg:w-72  ${
+                            !touched.aadharNo
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                         />
                         {!touched.aadharNo && (
                           <p className="text-red-400 text-sm">
@@ -2305,8 +2346,9 @@ const CreateEmployee_Mainbar = () => {
                         <DatePicker
                           id="DATE OF BIRTH"
                           placeholderText="Choose DOB"
-                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72 ${!touched.dob ? "border-red-400" : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72 ${
+                            !touched.dob ? "border-red-400" : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           selected={employeeDob}
                           onChange={handleDateofBirth}
@@ -2335,10 +2377,11 @@ const CreateEmployee_Mainbar = () => {
                       <div className="flex flex-col gap-1">
                         <input
                           type="text"
-                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${!touched.fathername
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${
+                            !touched.fathername
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           placeholder="Father name"
                           value={father_name}
@@ -2347,7 +2390,9 @@ const CreateEmployee_Mainbar = () => {
                           }}
                         />
                         {!touched.fathername && (
-                          <p className="text-red-400 text-sm">Enter Father name</p>
+                          <p className="text-red-400 text-sm">
+                            Enter Father name
+                          </p>
                         )}
                       </div>
                     </div>
@@ -2367,10 +2412,11 @@ const CreateEmployee_Mainbar = () => {
                       <div className="flex flex-col gap-1">
                         <input
                           type="text"
-                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${!touched.mothername
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${
+                            !touched.mothername
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           placeholder="Mother name"
                           value={mother_name}
@@ -2379,7 +2425,9 @@ const CreateEmployee_Mainbar = () => {
                           }}
                         />
                         {!touched.mothername && (
-                          <p className="text-red-400 text-sm">Enter Mother name</p>
+                          <p className="text-red-400 text-sm">
+                            Enter Mother name
+                          </p>
                         )}
                       </div>
                     </div>
@@ -2399,10 +2447,11 @@ const CreateEmployee_Mainbar = () => {
                       <div className="flex flex-col gap-1">
                         <input
                           type="text"
-                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${!touched.address1error
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${
+                            !touched.address1error
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           placeholder="Enter Address"
                           value={address1}
@@ -2431,10 +2480,11 @@ const CreateEmployee_Mainbar = () => {
                       <div className="flex flex-col gap-1">
                         <input
                           type="text"
-                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${!touched.address2error
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            }`}
+                          className={`border-2 rounded-xl h-10 px-4 border-gray-300  w-full lg:w-72  ${
+                            !touched.address2error
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           placeholder="Enter Address"
                           value={address2}
@@ -2473,7 +2523,10 @@ const CreateEmployee_Mainbar = () => {
                                 });
                               }}
                             />
-                            <label htmlFor="Single" className="tex-sm font-medium">
+                            <label
+                              htmlFor="Single"
+                              className="tex-sm font-medium"
+                            >
                               Single
                             </label>
                           </div>
@@ -2493,7 +2546,10 @@ const CreateEmployee_Mainbar = () => {
                                 });
                               }}
                             />
-                            <label htmlFor="Married" className="tex-sm font-medium">
+                            <label
+                              htmlFor="Married"
+                              className="tex-sm font-medium"
+                            >
                               Married
                             </label>
                           </div>
@@ -2529,40 +2585,6 @@ const CreateEmployee_Mainbar = () => {
                         )}
                       </div>
                     </div>
-
-                    {/* spouse */}
-
-                    {maritalStatus === "Married" && (
-                      <div className="flex flex-col xl:flex-row justify-between gap-1 mt-4">
-                        <div className="flex flex-col w-full sm:w-auto">
-                          <label
-                            className="font-medium text-sm"
-                            htmlFor="SPOUSE_NAME"
-                          >
-                            SPOUSE NAME
-                          </label>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          <input
-                            type="text"
-                            id="SPOUSE_NAME"
-                            className={`border-2 rounded-xl h-10 px-4 w-full lg:w-72 ${!touched.spousename
-                              ? "border-red-400"
-                              : "border-gray-300"
-                              }`}
-                            placeholder="Spouse name"
-                            value={spouse_name}
-                            onChange={(e) => setSpouseName(e.target.value)}
-                            onKeyUp={handleKeyUp}
-                          />
-                          {!touched.spousename && (
-                            <p className="text-red-400 text-sm">
-                              Enter Spouse name
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -2580,29 +2602,34 @@ const CreateEmployee_Mainbar = () => {
 
                       <div className="flex flex-col gap-1 ">
                         <input
-
                           id="UAN NO"
                           type="number"
                           placeholder="UAN No"
                           value={uan_number}
+                          maxLength={12}
                           onChange={(e) => {
-                            setUANNumber(e.target.value);
+                            // setUANNumber(e.target.value);
+                            const value = e.target.value
+                              .replace(/\D/g, "")
+                              .slice(0, 12);
+                            setUANNumber(value);
                           }}
                           className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10   w-full  lg:w-72 border-gray-300 
-                             ${!touched.uanNumber
-                              ? "border-red-400"
-                              : "border-gray-300"
-                            }`}
+                             ${
+                               !touched.uanNumber
+                                 ? "border-red-400"
+                                 : "border-gray-300"
+                             }`}
                           onKeyUp={handleKeyUp}
                         />
 
-                        {error.uan_number || !touched.uanNumber && (
-                          <p className="text-red-500 text-sm ">
-                            {/* {error.uan_number[0]} */}
-                            UAN exceeds 12 digits
-
-                          </p>
-                        )}
+                        {error.uan_number ||
+                          (!touched.uanNumber && (
+                            <p className="text-red-500 text-sm ">
+                              {/* {error.uan_number[0]} */}
+                              UAN exceeds 12 digits
+                            </p>
+                          ))}
                       </div>
                     </div>
 
@@ -2679,13 +2706,47 @@ const CreateEmployee_Mainbar = () => {
                         onChange={(e) => {
                           setEmergencyName(e.target.value);
                         }}
-                        className={`border-2 rounded-xl px-4   h-10 w-full  lg:w-72 ${!touched.emergencyName
-                          ? "border-red-400 "
-                          : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl px-4   h-10 w-full  lg:w-72 ${
+                          !touched.emergencyName
+                            ? "border-red-400 "
+                            : "border-gray-300"
+                        }`}
                         onKeyUp={handleKeyUp}
                       />
                     </div>
+                    {/* spouse */}
+                    {maritalStatus === "Married" && (
+                      <div className="flex flex-col xl:flex-row justify-between gap-1">
+                        <div className="flex flex-col w-full sm:w-auto">
+                          <label
+                            className="font-medium text-sm"
+                            htmlFor="SPOUSE_NAME"
+                          >
+                            SPOUSE NAME
+                          </label>
+                        </div>
+                        <div className="flex flex-col ">
+                          <input
+                            type="text"
+                            id="SPOUSE_NAME"
+                            className={`border-2 rounded-xl h-10 px-4 w-full lg:w-72 ${
+                              !touched.spousename
+                                ? "border-red-400"
+                                : "border-gray-300"
+                            }`}
+                            placeholder="Spouse name"
+                            value={spouse_name}
+                            onChange={(e) => setSpouseName(e.target.value)}
+                            onKeyUp={handleKeyUp}
+                          />
+                          {!touched.spousename && (
+                            <p className="text-red-400 text-sm">
+                              Enter Spouse name
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    )}
                     <div className="flex flex-col xl:flex-row gap-1 justify-between  ">
                       <div className="flex flex-col">
                         <label
@@ -2705,10 +2766,11 @@ const CreateEmployee_Mainbar = () => {
                           onChange={(e) => {
                             setemergencyContact(e.target.value);
                           }}
-                          className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 border-gray-300  h-10 w-full  lg:w-72 ${!touched.emergencyContact
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            }`}
+                          className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 border-gray-300  h-10 w-full  lg:w-72 ${
+                            !touched.emergencyContact
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                         />
                         {!touched.emergencyContact && (
@@ -2720,7 +2782,9 @@ const CreateEmployee_Mainbar = () => {
                     </div>{" "}
                     <div className="flex flex-col xl:flex-row gap-1 justify-between    relative">
                       <div className="flex flex-col sm:flex-row w-full gap-1 flex-wrap  justify-between">
-                        <label className="font-medium text-sm">RELATION TYPE</label>
+                        <label className="font-medium text-sm">
+                          RELATION TYPE
+                        </label>
                         <div className="flex flex-col gap-1">
                           <div className="flex flex-wrap gap-x-4 gap-y-2">
                             <div className="flex items-center gap-1">
@@ -2887,10 +2951,11 @@ const CreateEmployee_Mainbar = () => {
                               accountNumber: true,
                             });
                           }}
-                          className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 h-10 rounded-xl px-4 border-gray-300  w-full lg:w-52   ${!touched.accountNumber
-                            ? "border-red-400 "
-                            : "border-gray-300"
-                            }`}
+                          className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 h-10 rounded-xl px-4 border-gray-300  w-full lg:w-52   ${
+                            !touched.accountNumber
+                              ? "border-red-400 "
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                         />
 
@@ -3001,10 +3066,11 @@ const CreateEmployee_Mainbar = () => {
                               accountNumber: true,
                             });
                           }}
-                          className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 h-10 rounded-xl px-4 border-gray-300  w-full lg:w-52   ${!touched.accountNumber
-                            ? "border-red-400 "
-                            : "border-gray-300"
-                            }`}
+                          className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 h-10 rounded-xl px-4 border-gray-300  w-full lg:w-52   ${
+                            !touched.accountNumber
+                              ? "border-red-400 "
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                         />
                         {error.bank_account_no && (
@@ -3036,10 +3102,17 @@ const CreateEmployee_Mainbar = () => {
                           onFocus={() => setBankNameIsOpen(true)} // Open on focus
                           onMouseDown={handleDropdownClick}
                           onKeyDown={handleBankKeyDown}
-                          className={`w-full ${selectedBankNameOption ? "text-black" : "text-gray-400"
-                            } py-2 px-4  text-left rounded-xl  bg-white  focus:outline-black  outline-1 border-2  border-gray-300  flex justify-between items-center ${bankNameIsOpen ? "border-black" : ""
-                            } ${!touched.BankName ? "border-red-400" : "border-gray-300"
-                            } `}
+                          className={`w-full ${
+                            selectedBankNameOption
+                              ? "text-black"
+                              : "text-gray-400"
+                          } py-2 px-4  text-left rounded-xl  bg-white  focus:outline-black  outline-1 border-2  border-gray-300  flex justify-between items-center ${
+                            bankNameIsOpen ? "border-black" : ""
+                          } ${
+                            !touched.BankName
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          } `}
                           tabIndex={0}
                           style={{
                             color: selectedBankNameOption ? "black" : "gray",
@@ -3058,7 +3131,9 @@ const CreateEmployee_Mainbar = () => {
                             <input
                               type="text"
                               value={searchedBankName}
-                              onChange={(e) => setSearchedBankName(e.target.value)}
+                              onChange={(e) =>
+                                setSearchedBankName(e.target.value)
+                              }
                               className="w-full px-4 py-2 border-b border-gray-200 focus:outline-none"
                               placeholder="Search..."
                               tabIndex={0}
@@ -3066,20 +3141,29 @@ const CreateEmployee_Mainbar = () => {
 
                             <ul className="max-h-48 overflow-y-auto">
                               {filteredBankNametOptions.length > 0 ? (
-                                filteredBankNametOptions.map((option, index) => (
-                                  <li
-                                    key={index}
-                                    ref={(el) => (listRef.current[index] = el)} // Store the ref for each item
-                                    onClick={() => handleSelectBankOption(option)}
-                                    className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${bankActiveIndex === index ? "bg-gray-200" : ""
+                                filteredBankNametOptions.map(
+                                  (option, index) => (
+                                    <li
+                                      key={index}
+                                      ref={(el) =>
+                                        (listRef.current[index] = el)
+                                      } // Store the ref for each item
+                                      onClick={() =>
+                                        handleSelectBankOption(option)
+                                      }
+                                      className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
+                                        bankActiveIndex === index
+                                          ? "bg-gray-200"
+                                          : ""
                                       }`}
-                                    tabIndex={0}
-                                    onKeyDown={handleBankKeyDown}
-                                    onFocus={() => setBankActiveIndex(index)}
-                                  >
-                                    {option}
-                                  </li>
-                                ))
+                                      tabIndex={0}
+                                      onKeyDown={handleBankKeyDown}
+                                      onFocus={() => setBankActiveIndex(index)}
+                                    >
+                                      {option}
+                                    </li>
+                                  )
+                                )
                               ) : (
                                 <li className="px-4 py-2 text-gray-500">
                                   No results found
@@ -3104,17 +3188,21 @@ const CreateEmployee_Mainbar = () => {
                         placeholder="Enter Branch Name"
                         value={bank_branch}
                         onChange={(e) => setBankBranch(e.target.value)}
-                        className={`border-2 rounded-xl h-10 px-4 w-full lg:w-52   ${!touched.accountbranch
-                          ? "border-red-400 "
-                          : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl h-10 px-4 w-full lg:w-52   ${
+                          !touched.accountbranch
+                            ? "border-red-400 "
+                            : "border-gray-300"
+                        }`}
                         onKeyUp={handleKeyUp}
                       />
                     </div>
 
                     <div className="flex flex-col xl:flex-row gap-1 justify-between  ">
                       <div className="flex flex-col">
-                        <label className="font-medium text-sm" htmlFor="IFSC CODE">
+                        <label
+                          className="font-medium text-sm"
+                          htmlFor="IFSC CODE"
+                        >
                           IFSC CODE
                         </label>
                         {/* <p className="text-sm">IFSC CODE</p> */}
@@ -3127,8 +3215,11 @@ const CreateEmployee_Mainbar = () => {
                         onChange={(e) => {
                           setIFSCCode(e.target.value);
                         }}
-                        className={`border-2 rounded-xl h-10 px-4 w-full lg:w-52 border-gray-300   ${!touched.ifscCode ? "border-red-400 " : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl h-10 px-4 w-full lg:w-52 border-gray-300   ${
+                          !touched.ifscCode
+                            ? "border-red-400 "
+                            : "border-gray-300"
+                        }`}
                         onKeyUp={handleKeyUp}
                       />
                     </div>
@@ -3185,10 +3276,11 @@ const CreateEmployee_Mainbar = () => {
                           setSalaryAmount(e.target.value);
                         }}
                         onKeyUp={handleKeyUp}
-                        className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 border-gray-300  w-full lg:w-52 ${!touched.salaryAmount
-                          ? "border-red-400 "
-                          : "border-gray-300"
-                          }`}
+                        className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 border-gray-300  w-full lg:w-52 ${
+                          !touched.salaryAmount
+                            ? "border-red-400 "
+                            : "border-gray-300"
+                        }`}
                       />
                     </div>
 
@@ -3278,10 +3370,11 @@ const CreateEmployee_Mainbar = () => {
                       <select
                         id="PAYMENT TYPE"
                         name="PAYMENT TYPE"
-                        className={`border-2 rounded-xl px-4 h-10  w-full lg:w-52 ${!touched.PaymentType
-                          ? "border-red-400"
-                          : "border-gray-300"
-                          }`}
+                        className={`border-2 rounded-xl px-4 h-10  w-full lg:w-52 ${
+                          !touched.PaymentType
+                            ? "border-red-400"
+                            : "border-gray-300"
+                        }`}
                         onChange={(e) => {
                           setPaymentType(e.target.value);
                           setTouched({
@@ -3294,7 +3387,9 @@ const CreateEmployee_Mainbar = () => {
                             console.log("Enter pressed on:", e.target.value);
                           }
                           if (e.key === "Tab") {
-                            console.log("Tab pressed, moving to the next element.");
+                            console.log(
+                              "Tab pressed, moving to the next element."
+                            );
                           }
                         }}
                       >
@@ -3332,10 +3427,11 @@ const CreateEmployee_Mainbar = () => {
                           setInsuranceNumber(e.target.value);
                         }}
                         onKeyUp={handleKeyUp}
-                        className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 border-gray-300  w-full lg:w-52 ${!touched.salaryAmount
-                          ? "border-red-400 "
-                          : "border-gray-300"
-                          }`}
+                        className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 border-gray-300  w-full lg:w-52 ${
+                          !touched.salaryAmount
+                            ? "border-red-400 "
+                            : "border-gray-300"
+                        }`}
                       />
                     </div>
                     <div className="flex flex-col xl:flex-row gap-1 justify-between  ">
@@ -3352,10 +3448,11 @@ const CreateEmployee_Mainbar = () => {
                         <DatePicker
                           id="INSURANCE DATE"
                           placeholderText="Insurance Date"
-                          className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 border-gray-300  w-full lg:w-52 ${!touched.salaryAmount
-                            ? "border-red-400 "
-                            : "border-gray-300"
-                            }`}
+                          className={` [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 rounded-xl px-4 h-10 border-gray-300  w-full lg:w-52 ${
+                            !touched.salaryAmount
+                              ? "border-red-400 "
+                              : "border-gray-300"
+                          }`}
                           onKeyUp={handleKeyUp}
                           selected={insurance_date}
                           onChange={handleInsuranceDate}
@@ -3373,57 +3470,59 @@ const CreateEmployee_Mainbar = () => {
                 {/* Experience */}
                 <div className="rounded-2xl border-2 border-gray-200 bg-white py-4 px-4 lg:px-6">
                   <p className="text-xl font-semibold"> Experience </p>
-                  {workExperiences.map((experience, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start  justify-between mt-4 border rounded-lg p-4 bg-gray-50"
-                    >
-                      <div>
-                        <div className="flex flex-col gap-2">
-                          <div className="flex gap-1 flex-wrap items-center ">
-                            <p className="text-sm ">Job Title:</p>
-                            <p className="text-sm font-semibold">
-                              {experience.jobTitle}
-                            </p>
-                          </div>
+                  {workExperiences.length > 0 &&
+                    workExperiences?.map((experience, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start  justify-between mt-4 border rounded-lg p-4 bg-gray-50"
+                      >
+                        <div>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex gap-1 flex-wrap items-center ">
+                              <p className="text-sm ">Job Title:</p>
+                              <p className="text-sm font-semibold">
+                                {experience.jobTitle}
+                              </p>
+                            </div>
 
-                          <div className="flex gap-1 flex-wrap items-center ">
-                            <p className="text-sm">Company Name:</p>
-                            <p className="text-sm font-semibold">
-                              {experience.companyName}
-                            </p>
-                          </div>
+                            <div className="flex gap-1 flex-wrap items-center ">
+                              <p className="text-sm">Company Name:</p>
+                              <p className="text-sm font-semibold">
+                                {experience.companyName}
+                              </p>
+                            </div>
 
-                          <div className="flex gap-1 flex-wrap items-center">
-                            <h1 className="text-sm ">Start & End Date:</h1>
-                            <p className="text-sm font-semibold">
-                              {experience.startWork} - ${experience.endWork}
-                            </p>
-                          </div>
+                            <div className="flex gap-1 flex-wrap items-center">
+                              <h1 className="text-sm ">Start & End Date:</h1>
+                              <p className="text-sm font-semibold">
+                                {experience.startWork} - ${experience.endWork}
+                              </p>
+                            </div>
 
-                          <div className="flex gap-1 flex-wrap items-center">
-                            <h1 className="text-sm">Responsibilities:</h1>
-                            <p className="text-sm font-semibold">
-                              {experience.responsibilities}
-                            </p>
-                          </div>
+                            <div className="flex gap-1 flex-wrap items-center">
+                              <h1 className="text-sm">Responsibilities:</h1>
+                              <p className="text-sm font-semibold">
+                                {experience.responsibilities}
+                              </p>
+                            </div>
 
-                          <div className="flex gap-1 flex-wrap items-center">
-                            <h1 className="text-sm">Selected Documents:</h1>
-                            <ul className="text-sm flex flex-wrap gap-x-4">
-                              {experience.selectedDocs.map((res, idx) => (
-                                <li key={idx} className="flex items-center">
-                                  <p className="">
-                                    {" "}
-                                    <GoDotFill className="mr-2  inline-flex" />
-                                    {res}
-                                  </p>
-                                </li>
-                              ))}
-                            </ul>
+                            <div className="flex gap-1 flex-wrap items-center">
+                              <h1 className="text-sm">Selected Documents:</h1>
+                              <ul className="text-sm flex flex-wrap gap-x-4">
+                                {experience?.selectedDocs?.length > 0 &&
+                                  experience?.selectedDocs?.map((res, idx) => (
+                                    <li key={idx} className="flex items-center">
+                                      <p className="">
+                                        {" "}
+                                        <GoDotFill className="mr-2  inline-flex" />
+                                        {res}
+                                      </p>
+                                    </li>
+                                  ))}
+                              </ul>
+                            </div>
                           </div>
-                        </div>
-                        {/* <p className="font-semibold"> {experience.jobTitle} </p>
+                          {/* <p className="font-semibold"> {experience.jobTitle} </p>
                     <p className="font-medium"> {experience.companyName} </p>
                     <p> {experience.companyIndustry} </p>
                     <p> {experience.previousSalary} </p>
@@ -3431,7 +3530,7 @@ const CreateEmployee_Mainbar = () => {
                       {experience.startWork} - {experience.endWork}
                     </p>
                     */}
-                        {/* <ul className="mt-2">
+                          {/* <ul className="mt-2">
                       {experience.responsibilities.map((res, idx) => (
                         <li key={idx} className="flex items-center">
                           <p className="">
@@ -3442,16 +3541,16 @@ const CreateEmployee_Mainbar = () => {
                         </li>
                       ))}
                     </ul> */}
-                        {/* <p className="text-sm">{experience.responsibilities}</p> */}
+                          {/* <p className="text-sm">{experience.responsibilities}</p> */}
+                        </div>
+                        <button
+                          onClick={() => onClickWorkExperienceDelete(index)}
+                          className="text-xl text-red-500"
+                        >
+                          &times;
+                        </button>
                       </div>
-                      <button
-                        onClick={() => onClickWorkExperienceDelete(index)}
-                        className="text-xl text-red-500"
-                      >
-                        &times;
-                      </button>
-                    </div>
-                  ))}
+                    ))}
                   <div
                     onClick={openWorkExperienceModal}
                     className="flex gap-3 cursor-pointer items-center mt-5"
@@ -3507,7 +3606,8 @@ const CreateEmployee_Mainbar = () => {
                             <p className="text-gray-500">
                               Title: {fileWrapper.title}
                             </p>
-                            {fileWrapper.files && fileWrapper.files.length > 0 ? (
+                            {fileWrapper.files &&
+                            fileWrapper.files.length > 0 ? (
                               fileWrapper.files.map((file) => (
                                 <div
                                   key={file.id}
@@ -3528,7 +3628,9 @@ const CreateEmployee_Mainbar = () => {
                                   <p
                                     className="text-red-500 cursor-pointer"
                                     onClick={() =>
-                                      onClickDocumentDeleteButton(file.file.path)
+                                      onClickDocumentDeleteButton(
+                                        file.file.path
+                                      )
                                     }
                                   >
                                     x
@@ -3614,8 +3716,9 @@ const CreateEmployee_Mainbar = () => {
                 {" "}
               </div>
               <div
-                className={`fixed top-0 right-0 h-full overflow-y-scroll w-screen sm:w-[90vw] md:w-[70vw] bg-white shadow-lg px-5 md:px-16 py-10 transform transition-transform duration-500 ease-in-out ${isAnimating ? "translate-x-0" : "translate-x-full"
-                  }`}
+                className={`fixed top-0 right-0 h-full overflow-y-scroll w-screen sm:w-[90vw] md:w-[70vw] bg-white shadow-lg px-5 md:px-16 py-10 transform transition-transform duration-500 ease-in-out ${
+                  isAnimating ? "translate-x-0" : "translate-x-full"
+                }`}
               >
                 <div
                   className="w-6 h-6 rounded-full  border-2 transition-all duration-500 bg-white border-gray-300 flex items-center justify-center cursor-pointer"
@@ -3660,8 +3763,11 @@ const CreateEmployee_Mainbar = () => {
                         }))
                       }
                       placeholder="Enter job title"
-                      className={` border-2 rounded-xl px-4 h-10  w-full md:w-96  ${!expTouched.jobTitle ? "border-red-400" : "border-gray-300 "
-                        }`}
+                      className={` border-2 rounded-xl px-4 h-10  w-full md:w-96  ${
+                        !expTouched.jobTitle
+                          ? "border-red-400"
+                          : "border-gray-300 "
+                      }`}
                       onKeyUp={handleKeyUp}
                     />
                   </div>
@@ -3686,16 +3792,20 @@ const CreateEmployee_Mainbar = () => {
                       }
                       id="companyIndustry"
                       placeholder="Information Technology"
-                      className={`border-2 rounded-xl px-4 h-10 border-gray-300  w-full md:w-96 ${!expTouched.companyIndustry
-                        ? "border-red-400"
-                        : "border-gray-300 "
-                        }`}
+                      className={`border-2 rounded-xl px-4 h-10 border-gray-300  w-full md:w-96 ${
+                        !expTouched.companyIndustry
+                          ? "border-red-400"
+                          : "border-gray-300 "
+                      }`}
                       onKeyUp={handleKeyUp}
                     />
                   </div>
                   <div className="flex flex-col lg:flex-row gap-1 justify-between">
                     <div className="flex flex-col">
-                      <label className="font-medium text-sm" htmlFor="companyName">
+                      <label
+                        className="font-medium text-sm"
+                        htmlFor="companyName"
+                      >
                         COMPANY NAME
                       </label>
                       {/* <p className="text-sm"> Company name </p> */}
@@ -3711,10 +3821,11 @@ const CreateEmployee_Mainbar = () => {
                       type="text"
                       id="companyName"
                       placeholder="Company name"
-                      className={`border-2 rounded-xl px-4 h-10 border-gray-300  w-full md:w-96 ${!expTouched.companyName
-                        ? "border-red-400"
-                        : "border-gray-300 "
-                        }`}
+                      className={`border-2 rounded-xl px-4 h-10 border-gray-300  w-full md:w-96 ${
+                        !expTouched.companyName
+                          ? "border-red-400"
+                          : "border-gray-300 "
+                      }`}
                       onKeyUp={handleKeyUp}
                     />
                   </div>
@@ -3739,17 +3850,21 @@ const CreateEmployee_Mainbar = () => {
                       type="text"
                       id="previousSalary"
                       placeholder="Previous salary"
-                      className={`border-2 rounded-xl px-4 h-10 border-gray-300  w-full md:w-96 ${!expTouched.previousSalary
-                        ? "border-red-400"
-                        : "border-gray-300 "
-                        }`}
+                      className={`border-2 rounded-xl px-4 h-10 border-gray-300  w-full md:w-96 ${
+                        !expTouched.previousSalary
+                          ? "border-red-400"
+                          : "border-gray-300 "
+                      }`}
                       onKeyUp={handleKeyUp}
                     />
                   </div>
 
                   <div className="flex flex-col lg:flex-row gap-1 justify-between">
                     <div className="flex flex-col">
-                      <label className="font-medium text-sm" htmlFor="periodOfWork">
+                      <label
+                        className="font-medium text-sm"
+                        htmlFor="periodOfWork"
+                      >
                         PERIOD OF WORK
                       </label>
                       {/* <p className="text-sm"> Period of work </p> */}
@@ -3770,10 +3885,11 @@ const CreateEmployee_Mainbar = () => {
                             startWork: date?.getFullYear(),
                           }))
                         }
-                        className={`border-2  rounded-xl w-full md:w-44 h-10 px-4 border-gray-300  ${!expTouched.startWork
-                          ? "border-red-400"
-                          : "border-gray-300 "
-                          }`}
+                        className={`border-2  rounded-xl w-full md:w-44 h-10 px-4 border-gray-300  ${
+                          !expTouched.startWork
+                            ? "border-red-400"
+                            : "border-gray-300 "
+                        }`}
                         onKeyUp={handleKeyUp}
                         showYearDropdown
                         showYearPicker
@@ -3794,10 +3910,11 @@ const CreateEmployee_Mainbar = () => {
                             endWork: date?.getFullYear(),
                           }))
                         }
-                        className={`border-2 rounded-xl h-10 px-4 w-full md:w-44 border-gray-300  ${!expTouched.startWork
-                          ? "border-red-400"
-                          : "border-gray-300 "
-                          }`}
+                        className={`border-2 rounded-xl h-10 px-4 w-full md:w-44 border-gray-300  ${
+                          !expTouched.startWork
+                            ? "border-red-400"
+                            : "border-gray-300 "
+                        }`}
                         onKeyUp={handleKeyUp}
                         showYearDropdown
                         showYearPicker
@@ -3827,10 +3944,11 @@ const CreateEmployee_Mainbar = () => {
                         }))
                       }
                       rows="3"
-                      className={`  w-full md:w-96 pt-2 rounded-xl px-4   border-2  ${!expTouched.responsibilities
-                        ? "border-red-400"
-                        : "border-gray-300 "
-                        }`}
+                      className={`  w-full md:w-96 pt-2 rounded-xl px-4   border-2  ${
+                        !expTouched.responsibilities
+                          ? "border-red-400"
+                          : "border-gray-300 "
+                      }`}
                       onKeyUp={handleKeyUp}
                     />
                     {/* <ul className="mt-2">
@@ -3856,7 +3974,9 @@ const CreateEmployee_Mainbar = () => {
                 </div>
 
                 <div>
-                  <p className="text-3xl font-medium mt-8">Verification Process</p>
+                  <p className="text-3xl font-medium mt-8">
+                    Verification Process
+                  </p>
 
                   <div className="flex mt-5 gap-5">
                     <div className="flex gap-2">
@@ -3926,8 +4046,9 @@ const CreateEmployee_Mainbar = () => {
                 onClick={closeAddEducationInfoModal}
               ></div>
               <div
-                className={`fixed top-0 right-0 h-screen overflow-y-scroll w-[90vw] md:w-[70vw] bg-white shadow-lg px-5 md:px-16 py-10 transform transition-transform duration-500 ease-in-out ${isAnimating ? "translate-x-0" : "translate-x-full"
-                  }`}
+                className={`fixed top-0 right-0 h-screen overflow-y-scroll w-[90vw] md:w-[70vw] bg-white shadow-lg px-5 md:px-16 py-10 transform transition-transform duration-500 ease-in-out ${
+                  isAnimating ? "translate-x-0" : "translate-x-full"
+                }`}
               >
                 <div
                   className="w-6 h-6 rounded-full border-2 transition-all duration-500 bg-white border-gray-300 flex items-center justify-center cursor-pointer"
@@ -3957,7 +4078,10 @@ const CreateEmployee_Mainbar = () => {
                   {/* School Name */}
                   <div className="flex flex-col lg:flex-row gap-1 justify-between">
                     <div className="flex flex-col">
-                      <label className="font-medium text-sm" htmlFor="school-name">
+                      <label
+                        className="font-medium text-sm"
+                        htmlFor="school-name"
+                      >
                         Institute Name
                       </label>
                       {/* <p className="text-sm text-gray-500">Add School Name</p> */}
@@ -3966,10 +4090,11 @@ const CreateEmployee_Mainbar = () => {
                       type="text"
                       id="school-name"
                       placeholder="School name"
-                      className={`border-2 rounded-xl px-4  h-10 w-full md:w-96 ${!educationTouched.SchoolName
-                        ? "border-red-400"
-                        : "border gray-300"
-                        }`}
+                      className={`border-2 rounded-xl px-4  h-10 w-full md:w-96 ${
+                        !educationTouched.SchoolName
+                          ? "border-red-400"
+                          : "border gray-300"
+                      }`}
                       onKeyUp={handleKeyUp}
                       value={schoolName}
                       onChange={(e) => setSchoolName(e.target.value)}
@@ -3991,10 +4116,11 @@ const CreateEmployee_Mainbar = () => {
                       type="text"
                       id="department-name"
                       placeholder="Department name"
-                      className={`border-2 rounded-xl px-4  h-10 w-full md:w-96 ${!educationTouched.DepartmentName
-                        ? "border-red-400"
-                        : "border-gray-300"
-                        }`}
+                      className={`border-2 rounded-xl px-4  h-10 w-full md:w-96 ${
+                        !educationTouched.DepartmentName
+                          ? "border-red-400"
+                          : "border-gray-300"
+                      }`}
                       onKeyUp={handleKeyUp}
                       value={departmentName}
                       onChange={(e) => setDepartmentName(e.target.value)}
@@ -4003,7 +4129,10 @@ const CreateEmployee_Mainbar = () => {
                   {/* Period of Year */}
                   <div className="flex flex-col lg:flex-row gap-1 justify-between">
                     <div className="flex flex-col">
-                      <label className="font-medium text-sm" htmlFor="period-year">
+                      <label
+                        className="font-medium text-sm"
+                        htmlFor="period-year"
+                      >
                         YEAR OF PASSING
                       </label>
                       {/* <p className="text-sm text-gray-500">YEAR OF PASSING</p> */}
@@ -4012,10 +4141,11 @@ const CreateEmployee_Mainbar = () => {
                     <input
                       type="month"
                       // placeholder="End year"
-                      className={`border-2 rounded-xl px-4 h-10 w-full md:w-96 ${!educationTouched.YearOfPassing
-                        ? "border-red-400"
-                        : "border-gray-300"
-                        }`}
+                      className={`border-2 rounded-xl px-4 h-10 w-full md:w-96 ${
+                        !educationTouched.YearOfPassing
+                          ? "border-red-400"
+                          : "border-gray-300"
+                      }`}
                       onKeyUp={handleKeyUp}
                       value={endYear}
                       onChange={(e) => setEndYear(e.target.value)}
@@ -4033,8 +4163,9 @@ const CreateEmployee_Mainbar = () => {
                 onClick={closeAddEmployeeDocumentsModal}
               ></div>
               <div
-                className={`fixed top-0 right-0 h-full  overflow-y-scroll w-[90vw] md:w-[70vw] bg-white  px-5 md:px-16 py-10 transform transition-transform duration-500 ease-in-out ${isAnimating ? "translate-x-0" : "translate-x-full"
-                  }`}
+                className={`fixed top-0 right-0 h-full  overflow-y-scroll w-[90vw] md:w-[70vw] bg-white  px-5 md:px-16 py-10 transform transition-transform duration-500 ease-in-out ${
+                  isAnimating ? "translate-x-0" : "translate-x-full"
+                }`}
               >
                 <div
                   className="w-6 h-6 rounded-full  border-2 transition-all duration-500 bg-white border-gray-300 flex items-center justify-center cursor-pointer"
@@ -4063,7 +4194,10 @@ const CreateEmployee_Mainbar = () => {
                 {/* Title Input */}
                 <div className="flex flex-col lg:flex-row gap-1  justify-between mt-8">
                   <div className="flex flex-col">
-                    <label className="font-medium text-sm" htmlFor="school-name">
+                    <label
+                      className="font-medium text-sm"
+                      htmlFor="school-name"
+                    >
                       ENTER TITLE
                     </label>
                     {/* <p className="text-sm text-gray-500">Doc title</p> */}
@@ -4074,16 +4208,18 @@ const CreateEmployee_Mainbar = () => {
                     placeholder="Enter title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className={`border-2 rounded-xl px-4 py-2   w-full md:w-96 ${!docTitle ? "border-red-400" : "border-gray-300"
-                      }`}
+                    className={`border-2 rounded-xl px-4 py-2   w-full md:w-96 ${
+                      !docTitle ? "border-red-400" : "border-gray-300"
+                    }`}
                     onKeyUp={handleKeyUp}
                   />
                 </div>
                 {/* Drag and Drop Area */}
                 <div
                   {...getRootProps()}
-                  className={`border-2 border-dashed mt-5 rounded-lg py-10 px-5 text-center ${isDragActive ? "border-blue-500" : "border-gray-300"
-                    } ${!title.trim() ? "opacity-50 pointer-events-none" : ""}`} // Visual indicator when disabled
+                  className={`border-2 border-dashed mt-5 rounded-lg py-10 px-5 text-center ${
+                    isDragActive ? "border-blue-500" : "border-gray-300"
+                  } ${!title.trim() ? "opacity-50 pointer-events-none" : ""}`} // Visual indicator when disabled
                 >
                   <input {...getInputProps()} />
                   {isDragActive ? (

@@ -45,7 +45,10 @@ const Bidding_reports_details = () => {
   console.log("accounts", accounts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
+  const [fetchAccount, setFetchAccount] = useState([]);
+  const [fetchTechnology, setFetchTechnology] = useState([]);
+  const [fetchBidder, setFetchBidder] = useState([]);
+  console.log("fetchAccount", fetchAccount);
   // const handleConnectClick = (row) => {
   //   navigate("/bidding-details", { state: { row } });
   // };
@@ -59,6 +62,26 @@ const Bidding_reports_details = () => {
       behavior: "instant",
     });
   }
+
+  const fetchAccounts = async () => {
+      try {
+        const fetchAccount = await axios.get(
+          `${API_URL}/api/bidder/get-all-bidder`
+        );
+        console.log("fetchAccountsd", fetchAccount.data?.data);
+        // if (fetchAccount.success) {
+         setFetchAccount(fetchAccount.data?.data?.account || []);
+         setFetchTechnology(fetchAccount.data?.data?.technology || []);
+         setFetchBidder(fetchAccount.data?.data?.bidder || []);
+        // } else { 
+        //   setError("Failed to fetch data.");
+        // }
+      } catch {
+        setError("Failed to fetch data.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +101,9 @@ const Bidding_reports_details = () => {
       }
     };
     fetchData();
+    fetchAccounts();
   }, []);
+
   const [searchText, setSearchText] = useState("");
 
   // Filter function for nested data
@@ -92,6 +117,8 @@ const Bidding_reports_details = () => {
               .toLowerCase()
               .includes(searchText.toLowerCase())
           );
+          console.log("filteredRows :", filteredRows);
+          
           if (filteredRows.length > 0) {
             return { ...bidder, data: filteredRows };
           }
@@ -105,6 +132,9 @@ const Bidding_reports_details = () => {
       return null;
     })
     .filter(Boolean);
+
+    console.log("filteredAccounts :", filteredAccounts);;
+    
 
   // if (loading) return <div>Loading…</div>;
   // if (error) return <div className="text-red-600">{error}</div>;
@@ -120,51 +150,34 @@ const Bidding_reports_details = () => {
   });
 
   const [temp, setTemp] = useState(filters);
-  const accountsall = [
-    ...new Set(filteredAccounts.map((a) => a.account).filter(Boolean)),
-  ];
-  const bidders = [
-    ...new Set(
-      filteredAccounts.flatMap((a) => a.data.map((b) => b.name)).filter(Boolean)
-    ),
-  ];
-  const technologies = [
-    ...new Set(
-      filteredAccounts
-        .flatMap((a) =>
-          a.data.flatMap((b) => b.data.map((r) => r.technology?.name))
-        )
-        .filter(Boolean)
-    ),
-  ];
-  const replyOptions = [
-    ...new Set(filteredAccounts.map((r) => r.reply).filter(Boolean)),
-  ];
-  const filteredAccountsData = useMemo(() => {
-    return filteredAccounts
-      .filter((acc) => !filters.account || acc.account === filters.account)
-      .map((acc) => ({
-        ...acc,
-        data: acc.data.filter((b) => {
+  console.log("filters :", filters);;
+  
+ 
+const filteredAccountsData = useMemo(() => {
+  return filteredAccounts
+    .filter((acc) => !filters.account || acc.account === filters.account)
+    .map((acc) => ({
+      ...acc,
+      data: acc.data.map((b) => ({
+        ...b,
+        data: b.data.filter((r) => {
+          // Apply ALL filters at the record level
           return (
             (!filters.bidder || b.name === filters.bidder) &&
             (!filters.technology ||
-              b.data.some((r) => r.technology?.name === filters.technology)) &&
+              r.technology?.name?.toLowerCase() === 
+              filters.technology.toLowerCase()) &&
             (!filters.date ||
-              b.data.some(
-                (r) =>
-                  new Date(r.date).toLocaleDateString("en-GB") ===
-                  new Date(filters.date).toLocaleDateString("en-GB")
-              )) &&
+              new Date(r.date).toLocaleDateString("en-GB") ===
+              new Date(filters.date).toLocaleDateString("en-GB")) &&
             (!filters.reply ||
-              b.data.some((r) =>
-                r.reply?.toLowerCase().includes(filters.reply.toLowerCase())
-              ))
+              r.reply?.toLowerCase().includes(filters.reply.toLowerCase()))
           );
         }),
-      }))
-      .filter((acc) => acc.data.length > 0); // remove accounts with no matching bidders
-  }, [filteredAccounts, filters]);
+      })).filter((b) => b.data.length > 0), // Remove bidders with no matching records
+    }))
+    .filter((acc) => acc.data.length > 0);
+}, [filteredAccounts, filters]);
 
   const handleSubmit = () => setFilters(temp);
   const handleReset = () => {
@@ -215,9 +228,9 @@ const Bidding_reports_details = () => {
                     className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">All Accounts</option>
-                    {accountsall.map((a) => (
-                      <option key={a}>{a}</option>
-                    ))}
+{fetchAccount.map((account) => (
+  <option key={account._id} value={account.name}>{account.name}</option>
+))}
                   </select>
                 </div>
 
@@ -234,9 +247,12 @@ const Bidding_reports_details = () => {
                     className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">All Bidders</option>
-                    {bidders.map((b) => (
+                    {/* {bidders.map((b) => (
                       <option key={b}>{b}</option>
-                    ))}
+                    ))} */}
+                    {fetchBidder.map((account) => (
+  <option key={account._id} value={account?.employeeName}>{account?.employeeName}</option>
+))}
                   </select>
                 </div>
                 {/* Technology */}
@@ -252,9 +268,12 @@ const Bidding_reports_details = () => {
                     className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">All Technologies</option>
-                    {technologies.map((t) => (
+                    {/* {technologies.map((t) => (
                       <option key={t}>{t}</option>
-                    ))}
+                    ))} */}
+                    {fetchTechnology.map((account) => (
+  <option key={account._id} value={account.name}>{account.name}</option>
+))}
                   </select>
                 </div>
                 <div className="flex flex-col w-40 md:w-48">
