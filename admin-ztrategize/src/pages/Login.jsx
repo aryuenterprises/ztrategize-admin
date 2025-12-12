@@ -116,14 +116,14 @@ const Login = () => {
         {/* <img src={medicsresearch_logo} alt="" /> */}
       </div>
 
-      <p className="font-semibold text-3xl md:text-4xl text-[#0050aa] text-center pt-10 font-se">
+      <p className="font-semibold text-3xl md:text-4xl text-[#0050aa] text-center pt-5 font-se">
         HR MANAGEMENT SYSTEM
       </p>
 
       <div className="flex items-center justify-center  ">
         <div className="lg:basis-[50%] flex flex-col items-center justify-center gap-3">
-          <p className="text-[#0050aa] font-semibold font text-2xl md:text-4xl">
-          HRMS ADMIN LOGIN
+          <p className="text-[#0050aa] font-semibold font text-xl md:text-2xl">
+          ADMIN LOGIN
           </p>
           {/* <form onSubmit={handlesubmit}> */}
           <div className="flex md:w-[450px] gap-3 items-center mt-3 bg-white px-5 py-4 rounded-2xl shadow-[0px_0px_2px_0px_rgba(0,_0,_0,_0.1)]">
