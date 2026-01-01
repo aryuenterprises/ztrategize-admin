@@ -13,6 +13,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import ReactDOM from "react-dom";
 import Swal from "sweetalert2";
 import Footer from "../Footer";
+import { createRoot } from "react-dom/client";
 import Mobile_Sidebar from "../Mobile_Sidebar";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -286,8 +287,11 @@ const Roles_Mainbar = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -330,7 +334,7 @@ const Roles_Mainbar = () => {
                   />
                 </div> */}
               </div>,
-              container
+           
             );
           }
         }, 0);

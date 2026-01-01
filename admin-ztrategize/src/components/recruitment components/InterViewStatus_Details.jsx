@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IoIosArrowForward } from "react-icons/io";
 import Loader from "../Loader";
-
+import { createRoot } from "react-dom/client";
 const InterViewStatus_Details = () => {
   const navigate = useNavigate();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -221,8 +221,11 @@ const InterViewStatus_Details = () => {
         const id = `actions-${row._id || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+         if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -251,8 +254,7 @@ const InterViewStatus_Details = () => {
                     }}
                   />
                 </div>
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);

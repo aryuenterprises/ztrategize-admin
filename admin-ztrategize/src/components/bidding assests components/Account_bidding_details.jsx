@@ -25,7 +25,7 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Loader from "../Loader";
-
+import { createRoot } from "react-dom/client";
 
 const Account_bidding_details = () => {
   const navigate = useNavigate();
@@ -277,8 +277,11 @@ const Account_bidding_details = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -316,8 +319,7 @@ const Account_bidding_details = () => {
                     onClick={() => handleDelete(row.id)}
                   />
                 </div> */}
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);

@@ -31,7 +31,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { AiFillPrinter } from "react-icons/ai";
 import Loader from "../components/Loader";
 
-
+import { createRoot } from "react-dom/client";
 
 const Declaration_details = () => {
   const navigate = useNavigate();
@@ -470,8 +470,11 @@ const handlePrint = async (row) => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -522,8 +525,8 @@ const handlePrint = async (row) => {
                     onClick={() => handleDelete(row.id)}
                   />
                 </div> */}
-              </div>,
-              container
+              </div>
+       
             );
           }
         }, 0);
