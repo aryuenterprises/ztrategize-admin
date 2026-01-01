@@ -24,7 +24,7 @@ import { IoMdClose } from "react-icons/io";
 import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-
+import { createRoot } from "react-dom/client";
 const ProjectList = () => {
   const user = JSON.parse(localStorage.getItem("hrmsuser"));
   console.log("user", user);
@@ -606,8 +606,11 @@ const ProjectList = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -681,8 +684,8 @@ const ProjectList = () => {
                     onClick={() => handleDelete(row.id)}
                   />
                 </div> */}
-              </div>,
-              container
+              </div>
+      
             );
           }
         }, 0);

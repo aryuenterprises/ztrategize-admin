@@ -29,7 +29,7 @@ import "datatables.net-rowgroup-dt";
 // import "datatables.net-rowgroup";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-
+import { createRoot } from "react-dom/client";
 
 const Expense_icome_details = () => {
   const navigate = useNavigate();
@@ -370,8 +370,11 @@ const Expense_icome_details = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -409,8 +412,7 @@ const Expense_icome_details = () => {
                       onClick={() => handleDelete(row.id)}
                     />
                   </div> */}
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);

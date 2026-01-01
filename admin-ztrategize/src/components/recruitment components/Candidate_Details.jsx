@@ -25,7 +25,7 @@ import {
 } from "react-icons/io";
 import Loading from "../Loader";
 import { Dropdown } from "primereact/dropdown";
-
+import { createRoot } from "react-dom/client";
 const Candidate_Details = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -419,8 +419,11 @@ const Candidate_Details = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -449,8 +452,7 @@ const Candidate_Details = () => {
                     }}
                   />
                 </div>
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);

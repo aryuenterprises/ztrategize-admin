@@ -21,7 +21,6 @@ import { FaEye } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-
 const Leaves_Mainbar = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [approvedRejectedList, setApprovedRejectedList] = useState([]);

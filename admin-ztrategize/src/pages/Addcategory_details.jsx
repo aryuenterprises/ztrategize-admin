@@ -23,7 +23,7 @@ import { FaTrash } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
-
+import { createRoot } from "react-dom/client";
 const Addcategory_details = () => {
   const navigate = useNavigate();
 
@@ -237,8 +237,11 @@ const Addcategory_details = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -276,8 +279,7 @@ const Addcategory_details = () => {
                     onClick={() => handleDelete(row.id)}
                   />
                 </div> */}
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);

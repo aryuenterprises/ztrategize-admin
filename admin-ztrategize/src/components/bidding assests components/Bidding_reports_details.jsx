@@ -26,7 +26,6 @@ import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Loader from "../Loader";
 import { FaLink } from "react-icons/fa";
-
 const Bidding_reports_details = () => {
   const navigate = useNavigate();
 

@@ -4,6 +4,7 @@ import DataTable from "datatables.net-react";
 import DT from "datatables.net-dt";
 import "datatables.net-responsive-dt/css/responsive.dataTables.css";
 DataTable.use(DT);
+import { createRoot } from "react-dom/client";
 
 import axios from "../../api/axiosConfig";
 import { API_URL } from "../../config";
@@ -269,8 +270,11 @@ const Departments_Mainbar = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{

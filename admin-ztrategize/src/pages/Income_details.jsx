@@ -27,7 +27,7 @@ import { Chart } from "chart.js/auto";
 import "datatables.net-rowgroup-dt";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-
+import { createRoot } from "react-dom/client";
 
 
 const Income_details = () => {
@@ -370,8 +370,11 @@ const Income_details = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -409,8 +412,7 @@ const Income_details = () => {
                       onClick={() => handleDelete(row.id)}
                     />
                   </div> */}
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);

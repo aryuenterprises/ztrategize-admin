@@ -30,7 +30,7 @@ import { IoMdAdd } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import loader from "../Loader"
-
+import { createRoot } from "react-dom/client";
 const Payment_type_details = () => {
   const navigate = useNavigate();
 
@@ -768,8 +768,11 @@ const Payment_type_details = () => {
         const id = `actions-${row.sno || Math.random()}`;
         setTimeout(() => {
           const container = document.getElementById(id);
-          if (container && !container.hasChildNodes()) {
-            ReactDOM.render(
+          if (container) {
+            if (!container._root) {
+              container._root = createRoot(container);
+            }
+            container._root.render(
               <div
                 className="action-container"
                 style={{
@@ -807,8 +810,7 @@ const Payment_type_details = () => {
                     onClick={() => handleDelete(row.id)}
                   />
                 </div> */}
-              </div>,
-              container
+              </div>
             );
           }
         }, 0);
